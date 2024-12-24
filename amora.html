@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna Photo Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .holiday-image {
+            position: absolute;
+            top: 50%;
+            left: 6.5%;
+            transform: translate(-50%, -10%);
+            opacity: 0.8;
+            max-width: 150px;
+            height: auto;
+        }
+    </style>
+    <style>
+        .carousel.home {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel.home img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .carousel.home img.active {
+            opacity: 1;
+        }
+
+
+
+        .carousel-overlay.home {
+            position: relative;
+            z-index: 20;
+        }
+
+
+        nav {
+            z-index: 1000;
+            /* Ensures the navbar is on top of other content */
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+
+        .light-section {
+            background-color: #ffffff;
+        }
+
+        .dark-section {
+            background-color: #000000;
+			
+			 <!-- Hamburger Icon (Visible on Small Screens) -->
+        <button id="menu-toggle" class="md:hidden focus:outline-none text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        }
+		
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Header Section -->
+    <!--   <header class="bg-black bg-opacity-50 py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Anna Photo Studio</h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="#home" class="hover:text-gray-300">Home</a></li>
+          <li><a href="#gallery" class="hover:text-gray-300">Gallery</a></li>
+          <li><a href="#about" class="hover:text-gray-300">About</a></li>
+          <li><a href="#services" class="hover:text-gray-300">Services</a></li>
+          <li><a href="#testimonials" class="hover:text-gray-300">Testimonials</a></li>
+          <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header> -->
+
+    <nav id="navbar" class="fixed w-full">
+        <div class="container mx-auto px-4 flex justify-center items-center py-4">
+            <!-- a href="#" class="text-2xl font-bold text-gray-900">ANNA PHOTO STUDIO</a -->
+            <img id="logoimg" class="holiday-image img-icon" src="C:\Users\User\Desktop\Photography ECommerce\img\logo.png">
+            <ul class="hidden md:flex space-x-6 text-white items-end"> <!-- <items-end> -->
+                <li class="flex items-end">
+                    <a href="#home" class="hover:text-pink-500">Home</a>
+                </li>
+                <li class="flex items-end">
+                    <a href="#gallery" class="hover:text-pink-500">Gallery</a>
+                </li>
+                <li class="flex items-end">
+                    <a href="#about" class="hover:text-pink-500">About</a>
+                </li>
+                <li>
+                    <a href="#" class="text-2xl font-bold text-gold-900" style="font-family: 'Brush Script MT', cursive;">ANNA PHOTO STUDIO</a>
+                </li>
+                <li class="flex items-end">
+                    <a href="#services" class="hover:text-pink-500">Services</a>
+                </li>
+                <li class="flex items-end">
+                    <a href="#testimonial" class="hover:text-pink-500">Testimonials</a>
+                </li>
+                <li class="flex items-end">
+                    <a href="#contact" class="hover:text-pink-500">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <script>
+            document.addEventListener("scroll", function() {
+                // logo hide > 70% viewport
+                const image = document.getElementById("logoimg");
+                const viewportHeight = window.innerHeight - 300;
+                const scrollPosition = window.scrollY || window.pageYOffset;
+                if (scrollPosition < viewportHeight) {
+                    image.style.visibility = "visible"; // Show the image 
+                } else {
+                    image.style.visibility = "hidden"; // Hide the image 
+                }
+            });
+
+            document.addEventListener("scroll", () => {
+                const navbar = document.getElementById("navbar");
+                const sections = document.querySelectorAll("section");
+                let navbarColor = "white"; // Default color
+
+                sections.forEach((section) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 0 && rect.bottom >= 0) {
+                        // Check if the section is dark or light
+						//console.log("section.classList=" + section.classList);
+                        if (section.classList.contains("dark-section")) {
+                            navbarColor = "white";
+                        } else if (section.classList.contains("light-section")) {
+                            navbarColor = "black";
+                        }
+						//console.log(navbarColor);
+                    }
+                });
+
+                navbar.style.color = navbarColor;
+                const links = navbar.querySelectorAll("a");
+                links.forEach((link) => {
+                    link.style.color = navbarColor;
+                });
+            });
+        </script>
+    </nav>
+
+    <!-- Home Section -->
+    <!--  <section id="home" class="h-screen flex items-center justify-center bg-black bg-opacity-50">
+    <div class="text-center">
+      <h2 class="text-4xl font-bold mb-4">Capturing Your Precious Moments </h2>
+      <p class="text-lg mb-6">Elegant, timeless photography for every occasion</p>
+      <a href="#contact" class="bg-blue-500 px-6 py-3 rounded-lg text-white hover:bg-blue-600">Book a Session</a>
+    </div>
+  </section> -->
+
+    <section id="home" class="h-screen flex items-center justify-center bg-black bg-opacity-50">
+        <div class="carousel home">
+            <img src="https://images.pexels.com/photos/1603884/pexels-photo-1603884.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 1" class="active">
+            <img src="https://images.pexels.com/photos/10258486/pexels-photo-10258486.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 2">
+            <img src="C:\Users\User\Desktop\Photography ECommerce\img\img 3-home.jpeg" alt="Image 3">
+            <img src="C:\Users\User\Desktop\Photography ECommerce\img\img 4-home.webp" alt="Image 4">
+			<img src="https://lh6.googleusercontent.com/Q4p2nzOZN-4w3kUzBJEHExTiO9WThylHli8CWIaUOK-QI0b2p0G_E0l0laQZNLD47qoGVERKd_XvJtHu1qDJDsZq5T0-zHvkDik42MiIiFA1VE7idj0Oe1SWpl9bbLbDya_PKm_aorfnrSg52m7tQec" alt="Image 5">
+        </div>
+        <div class="carousel-overlay text-center home">
+            <h2 class="text-4xl font-bold mb-4">Capturing Your Precious Moments</h2>
+            <p class="text-lg mb-6">Elegant, timeless photography for every occasion</p> <a href="#contact" class="bg-blue-500 px-6 py-3 rounded-lg text-white hover:bg-blue-600">Book a Session</a>
+        </div>
+        <script>
+            let index = 0;
+            const images = document.querySelectorAll('.carousel img');
+            const totalImages = images.length;
+
+            function showNextImage() {
+                images[index].classList.remove('active');
+                index = (index + 1) % totalImages;
+                images[index].classList.add('active');
+            }
+            setInterval(showNextImage, 5000); // Change image every 5 seconds
+        </script>
+    </section>
+
+
+    <section id="welcome" class="py-16 bg-orange-200 text-center">
+        <!-- Text Content -->
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4 animate-breathe">Welcome</h1>
+            <h2 class="text-lg text-gray-700 animate-breathe">I believe every photo tells a story, and my goal is to make yours unforgettable.</h2>
+        </div>
+
+        <!-- Images -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="relative">
+                <img src="C:\Users\User\Desktop\Photography ECommerce\img\img 1-gallery.png" alt="Photo 1" class="w-full h-48 object-cover rounded-lg shadow-lg animate-breathe">
+            </div>
+            <div class="relative">
+                <img src="C:\Users\User\Downloads\wedding photo.jpg" alt="Photo 2" class="w-full h-48 object-cover rounded-lg shadow-lg animate-breathe">
+            </div>
+            <div class="relative">
+                <img src="C:\Users\User\Downloads\_A fun birthday party for a 10-year-old Asian BOY in Malaysia, featuring TRANSPORTATION theme. The party is held outdoors with a hint of traditional Malaysian architecture. The scene includes decorations such as bal.jpg" alt="Photo 3" class="w-full h-48 object-cover rounded-lg shadow-lg animate-breathe">
+            </div>
+            <div class="relative">
+                <img src="C:\Users\User\Downloads\_A proud and celebratory scene at a university in Malaysia, showcasing a young Asian man in his early 20s on his graduation day. He is dressed in a traditional academic cap and gown, holding his diploma with a beami.jpg" alt="Photo 4" class="w-full h-48 object-cover rounded-lg shadow-lg animate-breathe">
+            </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="mt-6">
+            <a href="#gallery" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition mr-2">
+                View Gallery
+            </a>
+            <a href="#contact" class="inline-block bg-green-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-green-700 transition ml-2">
+                Book Your Session
+            </a>
+        </div>
+    </section>
+
+    <!-- CSS for Breathe Animation -->
+    <style>
+        @keyframes breathe {
+
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-breathe {
+            animation: breathe 2s infinite;
+        }
+    </style>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-gray-800 uppercase tracking-wider font-bold text-sm text-center">Gallery</h2>
+            <h3 class="text-3xl font-bold text-gray-900 leading-tight mb-8 text-center">A Glimpse Into My Work</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Image 1 -->
+                <div class="relative group">
+                    <img src="C:\Users\User\Desktop\Photography ECommerce\img\gmbr peng.jpg" alt="Gallery Image 1" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-white text-center font-semibold text-lg flex items-center justify-center h-full">Wedding Shoot</p>
+                    </div>
+                </div>
+                <!-- Image 2 -->
+                <div class="relative group">
+                    <img src="C:\Users\User\Desktop\Photography ECommerce\img\img2-gallery.png" alt="Gallery Image 2" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-white text-center font-semibold text-lg flex items-center justify-center h-full">Graduation</p>
+                    </div>
+                </div>
+                <!-- Image 3 -->
+                <div class="relative group">
+                    <img src="C:\Users\User\Desktop\Photography ECommerce\img\img3-gallery.jpg" alt="Gallery Image 3" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-white text-center font-semibold text-lg flex items-center justify-center h-full">Birthday Celebration</p>
+                    </div>
+                </div>
+                <!-- Image 4 -->
+                <div class="relative group">
+                    <img src="C:\Users\User\Desktop\Photography ECommerce\img\img4-gallery.png" alt="Gallery Image 4" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-white text-center font-semibold text-lg flex items-center justify-center h-full">Pre-Wedding</p>
+                    </div>
+                </div>
+                <!-- Image 5 -->
+                <div class="relative group">
+                    <img src="C:\Users\User\Desktop\Photography ECommerce\img\img5-gallery.png" alt="Gallery Image 5" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-white text-center font-semibold text-lg flex items-center justify-center h-full">Raya Celebration</p>
+                    </div>
+                </div>
+                <!-- Image 6 -->
+                <div class="relative group">
+                    <img src="C:\Users\User\Desktop\Photography ECommerce\img\img6-gallery.png" alt="Gallery Image 6" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition">
+                        <p class="text-white text-center font-semibold text-lg flex items-center justify-center h-full">Newborn Shoot</p>
+                    </div>
+                </div>
+            </div>
+            <!-- CTA Button -->
+            <div class="text-center mt-10">
+                <a href="https://www.instagram.com/accounts/login/" target="_blank" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition">
+                    View More on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-orange-200">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center px-6 gap-8">
+            <!-- Text Section -->
+            <div>
+                <h2 class="text-gray-800 uppercase tracking-wider font-bold text-sm">About</h2>
+                <h3 class="text-3xl font-bold text-gray-900 leading-tight mb-4">The Story Teller Behind the Camera</h3>
+                <p class="text-gray-700 mb-6">
+                    Hi, I’m Anna, a talented photographer based in Melaka. My passion is capturing life’s most cherished moments and turning them into timeless memories. With 10 years of experience, I specialize in capturing the beauty of weddings, the pride of convocations, and the joy of celebrations.
+                </p>
+                <a href="#contact" class="bg-blue-600 text-white px-6 py-3 font-semibold rounded hover:bg-blue-700 transition">
+                    Get in Touch
+                </a>
+            </div>
+            <!-- Image Section -->
+            <div>
+                <img src="C:\Users\User\Desktop\Photography ECommerce\img\freepik__upload__82205.jpeg" alt="Anna - The Photographer" class="w-full rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white light-section">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6">
+            <!-- Image Section -->
+            <div>
+                <img src="C:\Users\User\Desktop\Photography ECommerce\img\package 01.png" alt="Photography Service" class="w-full rounded shadow-lg">
+            </div>
+            <!-- Text Section -->
+            <div class="text-center md:text-right">
+                <h2 class="text-gray-800 uppercase tracking-wider font-bold text-sm">Services</h2>
+                <h3 class="text-3xl font-bold text-gray-900 leading-tight mb-4">Tailored Photography Services to Meet Your Needs</h3>
+                <p class="text-gray-700 mb-6">
+                    Ready to capture your story? Contact me for a free consultation or customized quote.
+                </p>
+                <a href="#contact" class="bg-blue-600 text-white px-6 py-3 font-semibold rounded hover:bg-blue-700 transition">
+                    I’m Ready to Discuss More!
+                </a>
+            </div>
+        </div>
+    </section>
+
+	<!-- Testimonial Section -->
+<section id="testimonial" class="bg-orange-200 py-12">
+    <div class="container mx-auto px-6">
+            <!-- Header -->
+            <div class="text-left mb-8">
+                <h2 class="text-lg font-semibold text-gray-800 tracking-wide">TESTIMONIALS</h2>
+                <h3 class="text-3xl font-bold text-gray-900">LOVE LETTERS FROM MY CLIENTS</h3>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-orange-100 p-6 rounded-lg shadow-md">
+                    <span class="text-4xl text-orange-500 font-serif leading-none">“</span>
+                    <p class="mt-4 text-gray-800">
+                        The photos are AWESOME and it's a true representation of the saying " A picture speaks a thousand words".
+                    </p>
+                    <p class="mt-4 font-semibold text-gray-900">Daniel & Mei</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-orange-100 p-6 rounded-lg shadow-md">
+                    <span class="text-4xl text-orange-500 font-serif leading-none">“</span>
+                    <p class="mt-4 text-gray-800">
+                        Thank you Anna. Very talanted. We do love every single photo that you take.
+                    </p>
+                    <p class="mt-4 font-semibold text-gray-900">Zikry & Farah</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-orange-100 p-6 rounded-lg shadow-md">
+                    <span class="text-4xl text-orange-500 font-serif leading-none">“</span>
+                    <p class="mt-4 text-gray-800">
+                        The pictures come out absolutely perfect! We are so glad that we chose you as our photographer. Thank you once again Anna for your professionalism and patience, especially wth my kid!
+                    </p>
+                    <p class="mt-4 font-semibold text-gray-900">Vaniee</p>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="bg-orange-100 p-6 rounded-lg shadow-md">
+                    <span class="text-4xl text-orange-500 font-serif leading-none">“</span>
+                    <p class="mt-4 text-gray-800">
+                        Yayy thanks Anna. Family puji gambar convo cantik! Saya suka :)
+                    </p>
+                    <p class="mt-4 font-semibold text-gray-900">Amira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="relative">
+        <!-- Background Image -->
+        <div class="relative h-96 bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/1445697/pexels-photo-1445697.jpeg?auto=compress&cs=tinysrgb&w=600');">
+            <div class="absolute inset-0 bg-black opacity-40"></div>
+            <div class="absolute inset-0 flex justify-center items-center">
+                <h2 class="text-white text-4xl font-bold">Let’s Create Magic Together</h2>
+            </div>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="bg-white py-12 px-6">
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <!-- Phone - <!-- Phone -->
+        <div class="flex flex-col items-center">
+            <a href="https://wa.me/60121100343" target="_blank">
+                <img src="C:\Users\User\Desktop\Photography ECommerce\img\Whatsapp-Icon.png" alt="Phone Icon" class="h-8 w-8 mb-2" />
+            </a>
+            <p class="font-medium text-gray-800">012-1100343</p>
+        </div>
+        <!-- Email -->
+        <div class="flex flex-col items-center">
+            <a href="https://mail.google.com/" target="_blank">
+                <img src="C:\Users\User\Desktop\Photography ECommerce\img\email.jpg" alt="Email Icon" class="h-8 w-8 mb-2" />
+            </a>
+            <p class="font-medium text-gray-800">helloanna@gmail.com</p>
+        </div>
+        <!-- Instagram -->
+        <div class="flex flex-col items-center">
+            <a href="https://www.instagram.com/" target="_blank">
+                <img src="C:\Users\User\Desktop\Photography ECommerce\img\ig.png" alt="Instagram Icon" class="h-8 w-8 mb-2" />
+            </a>
+            <p class="font-medium text-gray-800">annaphotostudio</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer Section -->
+    <footer class="py-4 bg-black bg-opacity-50 text-center">
+        <p>&copy; 2024 Anna Photo Studio. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
